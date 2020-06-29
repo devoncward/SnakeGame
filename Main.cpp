@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include "Display.h"
+#include "Control.h"
 #include <unistd.h>
 
 //Will also need to create state machine here as example
 
 //Note for Derek: use printf instead of cout, I like it better, and it offers more control in printing to the console
 
-#define MAIN_TICK_RATE 5E5 // .5 usec
+#define MAIN_TICK_RATE 1E5 // 1/10 sec in usec
 
 #define MAX_SNAKE_NAME_SIZE 50
 #define DEFAULT_SNAKE_NAME "Snakey"
@@ -87,6 +88,7 @@ static void tickFunction() {
             break;
         case perform_game_st:
             //Perform the tick function in the Control State Machine
+            //Control_activateControlStateMachine(true);
             break;
         case end_game_st:
             gameActive = false;
@@ -100,6 +102,7 @@ int main() {
 
     //Begin the game
     while(gameActive) {
+        // Tick function of Control State
         tickFunction();
         usleep(MAIN_TICK_RATE); //Accepts microseconds
     }

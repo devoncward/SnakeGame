@@ -31,4 +31,8 @@ int Display_drawFood();
 // 1 if successfully drawn
 int Display_clearFood();
 
+// Called to draw the end game screen after we lose. 
+// Should also display the total score that we reached
+int Display_drawEndGameScreen();
+
 #endif
