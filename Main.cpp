@@ -12,7 +12,7 @@
 #define MAX_SNAKE_NAME_SIZE 50
 #define DEFAULT_SNAKE_NAME "Snakey"
 
-bool gameActive;
+static bool gameActive;
 
 static enum MainState {
     init_st,
@@ -30,6 +30,7 @@ static void init() {
     printf("We are initializing the state machine\n");
 }
 
+// Displays changes of states in the state machine
 static void debugStateMachine() {
     static enum MainState previousState;
     if(previousState != currentState) {
@@ -51,8 +52,10 @@ static void debugStateMachine() {
     }
 }
 
+// Called every tick, does transitions and actions of state machine
 static void tickFunction() {
     debugStateMachine();
+
     //Transitions of the state machine
     switch(currentState) {
         case init_st:
@@ -87,11 +90,11 @@ static void tickFunction() {
         case waiting_for_key_press_st:
             break;
         case perform_game_st:
-            //Perform the tick function in the Control State Machine
+            //Perform the tick function of the Control State Machine
             //Control_activateControlStateMachine(true);
             break;
         case end_game_st:
-            gameActive = false;
+            gameActive = false; // Not really needed
             break;
     }
 }

@@ -3,7 +3,7 @@
 
 #define DEFAULT_SNAKE_SIZE 3 // Does not include the tail
 
-//bool stateMachineActive;
+bool controlStateMachineStatus;
 
 struct location {
     int x;
