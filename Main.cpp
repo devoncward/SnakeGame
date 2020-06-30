@@ -3,9 +3,12 @@
 #include "Control.h"
 #include <unistd.h>
 
-//Will also need to create state machine here as example
-
-//Note for Derek: use printf instead of cout, I like it better, and it offers more control in printing to the console
+/*
+Look into:
+    sscanf
+    clock rate in state machine
+    clearing console
+*/
 
 #define MAIN_TICK_RATE 1E5 // 1/10 sec in usec
 
