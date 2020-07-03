@@ -26,10 +26,14 @@ static enum MainState {
 
 static char snakeName[MAX_SNAKE_NAME_SIZE] = DEFAULT_SNAKE_NAME;
 
+//the board upon which the display will be made
+static char board[DISPLAY_WIDTH * DISPLAY_HEIGHT];
+
 //This function inits the variables we will use in the state machine
 static void init() {
     currentState = init_st;
     gameActive = true;
+    Display_emptyScreen(board); // ------------------------------------------TEST CODE-------------------------------------------------------------
     printf("We are initializing the state machine\n");
 }
 
@@ -46,6 +50,7 @@ static void debugStateMachine() {
                 printf("Entering Main Waiting For Key Press State\n");
                 break;
             case perform_game_st:
+                Display_drawSnake(board); //-------------------------------------------------TEST CODE---------------------------------------------------------------
                 printf("Entering Main Perform Game State\n");
                 break;
             case end_game_st:
