@@ -29,6 +29,7 @@ static enum MainState {
 static void init() {
     currentState = init_st;
     gameActive   = true;
+    Display_initializeScreen();
     printf("We are initializing the state machine\n");
 }
 
@@ -91,9 +92,10 @@ static void tickFunction() {
         break;
     }
 
-    // function moved here for more clarity upon "entering" a state. Placing this function
-    // at the top of the tick function, certain values never get printed by the debugStateMachine(),
-    // and sometimes debugStateMachine() is a tick behind in printing out the actual value
+    // function moved here for more clarity upon "entering" a state. Placing
+    // this function at the top of the tick function, certain values never get
+    // printed by the debugStateMachine(), and sometimes debugStateMachine() is
+    // a tick behind in printing out the actual value
     debugStateMachine();
 
     // Actions of the state machine
@@ -109,7 +111,7 @@ static void tickFunction() {
         break;
     case end_game_st:
         printf("Endgamestuff...\n");
-        //Display_drawEndGameScreen();
+        // Display_drawEndGameScreen();
         break;
     }
 }

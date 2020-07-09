@@ -16,9 +16,11 @@
 |-----------------------|
 */
 
+int Display_initializeScreen();
+
 // Called to draw a function on the board. Draws the head, and all tail segments
 // in the correct positions. Returns a 0 if an error was detected, 1 if successfully drawn
-int Display_drawSnake(char*);
+int Display_drawSnake();
 
 // Called to draw the arena on the board. Returns a 0 if an error was detected, 1 if
 // successfully drawn

@@ -20,11 +20,11 @@ void Control_debugStateMachine();
 // Standard tick function for control state machine
 void Control_tickFunction();
 
-// Returns 1 if snake hits a wall, 0 otherwise
-int Control_detectWallCollision();
+// Returns true if snake hits a wall, false otherwise
+bool Control_detectWallCollision();
 
-// Returns 1 if snake hits itself, 0 otherwise
-int Control_detectTailCollision();
+// Returns true if snake hits itself, false otherwise
+bool Control_detectTailCollision();
 
 // Activates the state machine by setting stateMachineStatus true or false
 // through value input parameter

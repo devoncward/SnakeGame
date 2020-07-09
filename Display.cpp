@@ -1,46 +1,37 @@
 #include "Display.h"
-
 #include <stdio.h>
 
-int Display_emptyScreen(char *display) {
-    for (int i = 0; i < DISPLAY_WIDTH * DISPLAY_HEIGHT; ++i) {
-        display[i] = '.';
+static int display[DISPLAY_WIDTH][DISPLAY_HEIGHT];
+
+int Display_initializeScreen() {
+    for (int row = 0; row < DISPLAY_HEIGHT; ++row) {
+        for (int column = 0; column < DISPLAY_WIDTH; ++column) {
+            if (column == 0 || column == DISPLAY_WIDTH - 1 || row == 0 ||
+                row == DISPLAY_HEIGHT - 1) {
+                display[row][column] = '&';
+            } else {
+                display[row][column] = '.';
+            }
+        }
     }
 
     return 1;
 }
 
-int Display_drawSnake(char *display) {
-    // Enclosing top of grid border
-    for (int i = 0; i < DISPLAY_WIDTH + 2; ++i) {
-        printf("-");
-    }
-
-    //Spacing
-    printf("\n");
-
-    //The Grid Row
+int Display_drawArena() {
     for (int row = 0; row < DISPLAY_HEIGHT; ++row) {
-        // For vertical grid enclosure
-        printf("|");
-
-        //The grid row itself
-        for (int column = 0; column < DISPLAY_HEIGHT; ++column) {
-            printf("%c", display[(DISPLAY_WIDTH * row) + column]);
+        for (int column = 0; column < DISPLAY_WIDTH; ++column) {
+            printf("%c", display[row][column]);
         }
-
-        // For vertigcal grid enclosure
-        printf("|\n");
+        printf("\n");
     }
 
-    // Enclosing bottom of grid border
-    for (int i = 0; i < DISPLAY_WIDTH + 2; ++i) {
-        printf("-");
-    }
+    return 1;
+}
 
-
-    //Spacing
-    printf("\n");
+int Display_drawSnake() {
+    printf("Drawing snake...\n");
+    Display_drawArena();
 
     return 1;
 }

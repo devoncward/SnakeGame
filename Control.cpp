@@ -1,10 +1,12 @@
 #include "Control.h"
+#include "Display.h"
 #include <cstdio>
 
 bool stateMachineActive;
 
 static enum ControlState {
     init_st,
+    init_snake_st,
     move_snake_st,
     check_snake_st,
     wait_for_input_st,
@@ -27,6 +29,9 @@ void Control_debugStateMachine() {
         case init_st:
             printf("\tEntering Control Init State\n");
             break;
+        case init_snake_st:
+            printf("\tEntering Init Snake State\n");
+            break;
         case move_snake_st:
             printf("\tEntering Control Move Snake St\n");
             break;
@@ -47,18 +52,20 @@ void Control_tickFunction() {
     // Transitions of the state machine
     switch (currentState) {
     case init_st:
-        currentState = move_snake_st;
+        currentState = init_snake_st;
         break;
+    case init_snake_st:
+        currentState = move_snake_st;
     case move_snake_st:
         currentState = check_snake_st;
         break;
     case check_snake_st:
-        // if Control_detectWallCollision() or Control_detectTailCollision()
-        // true:
-        currentState = game_over_st;
-        break;
-        // else
-        currentState = wait_for_input_st;
+        if (Control_detectWallCollision() || Control_detectTailCollision()) {
+            currentState = game_over_st;
+        } else {
+            Display_drawSnake();
+            currentState = wait_for_input_st;
+        }
         break;
     case wait_for_input_st:
         currentState = move_snake_st;
@@ -72,6 +79,8 @@ void Control_tickFunction() {
     // Actions of the state machine
     switch (currentState) {
     case init_st:
+        break;
+    case init_snake_st:
         break;
     case move_snake_st:
         // get the user's input here to make the move, and calculate and execute
@@ -89,4 +98,12 @@ void Control_tickFunction() {
 
 bool Control_getStatusOfControlStateMachine() {
     return stateMachineActive;
+}
+
+bool Control_detectWallCollision() {
+    return false;
+}
+
+bool Control_detectTailCollision() {
+    return false;
 }
