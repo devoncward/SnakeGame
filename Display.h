@@ -36,7 +36,4 @@ int Display_clearFood();
 // Should also display the total score that we reached
 int Display_drawEndGameScreen();
 
-// To initialize the default screen
-int Display_emptyScreen(char*);
-
 #endif
