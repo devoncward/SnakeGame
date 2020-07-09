@@ -2,6 +2,7 @@
 #define CONTROL_H
 
 #define DEFAULT_SNAKE_SIZE 3 // Does not include the tail
+#define MAX_SNAKE_SIZE 50
 
 struct location {
     int x;
@@ -32,6 +33,10 @@ int Control_activateControlStateMachine(bool value);
 
 // Returns the status of the Control state machine
 bool Control_getStatusOfControlStateMachine();
+
+void Control_updateSnake();
+
+void Control_updateScreen();
 
 // Returns a location of a random food within the bounds of the display
 location Control_foodLocation();

@@ -29,7 +29,6 @@ static enum MainState {
 static void init() {
     currentState = init_st;
     gameActive   = true;
-    Display_initializeScreen();
     printf("We are initializing the state machine\n");
 }
 
@@ -110,7 +109,6 @@ static void tickFunction() {
         Control_tickFunction();
         break;
     case end_game_st:
-        printf("Endgamestuff...\n");
         // Display_drawEndGameScreen();
         break;
     }
@@ -121,6 +119,7 @@ int main() {
     init();
 
     // Begin the game
+    Display_clearArena();
     while (gameActive) {
         // Tick function of Control State
         tickFunction();

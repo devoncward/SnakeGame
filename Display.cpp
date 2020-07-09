@@ -1,16 +1,16 @@
 #include "Display.h"
 #include <stdio.h>
 
-static int display[DISPLAY_WIDTH][DISPLAY_HEIGHT];
+static int display[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
-int Display_initializeScreen() {
+int Display_clearArena() {
     for (int row = 0; row < DISPLAY_HEIGHT; ++row) {
         for (int column = 0; column < DISPLAY_WIDTH; ++column) {
             if (column == 0 || column == DISPLAY_WIDTH - 1 || row == 0 ||
                 row == DISPLAY_HEIGHT - 1) {
-                display[row][column] = '&';
+                display[row][column] = '#';
             } else {
-                display[row][column] = '.';
+                display[row][column] = ' ';
             }
         }
     }
@@ -18,7 +18,7 @@ int Display_initializeScreen() {
     return 1;
 }
 
-int Display_drawArena() {
+int Display_drawScreen() {
     for (int row = 0; row < DISPLAY_HEIGHT; ++row) {
         for (int column = 0; column < DISPLAY_WIDTH; ++column) {
             printf("%c", display[row][column]);
@@ -29,9 +29,13 @@ int Display_drawArena() {
     return 1;
 }
 
-int Display_drawSnake() {
-    printf("Drawing snake...\n");
-    Display_drawArena();
+int Display_drawSnakeSection(int x, int y, int section) {
+    if (section == 0) {
+        // we're drawing the head
+        display[x][y] = '0';
+    } else {
+        display[x][y] = 'o';
+    }
 
     return 1;
 }
