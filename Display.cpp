@@ -34,7 +34,7 @@ int Display_drawSnakeSection(int x, int y, int section) {
         // we're drawing the head
         display[x][y] = '0';
     } else {
-        display[x][y] = 'o';
+        display[x][y] = 'x';
     }
 
     return 1;
